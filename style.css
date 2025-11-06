@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    background: #000;
+}
+
+/* Background Video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+/* Overlay for better text readability */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: -1;
+}
+
+/* Audio Toggle Button */
+.audio-toggle {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.audio-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.audio-toggle.muted {
+    opacity: 0.5;
+}
+
+.audio-toggle svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Main Container */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    max-width: 900px;
+    width: 100%;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Glowing Text Effect */
+.glowing-text {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 40px rgba(118, 75, 162, 0.8));
+    }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    opacity: 0.9;
+}
+
+/* Button Container */
+.button-container {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn svg {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+    width: 16px;
+    height: 16px;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: left 0.3s ease;
+    z-index: 0;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    border-color: #333;
+}
+
+.btn:hover svg {
+    transform: translateX(3px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: #000;
+    color: #fff;
+}
+
+.btn-secondary {
+    background: #000;
+    color: #fff;
+}
+
+/* Instructions */
+.instructions {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-top: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 1.5s ease-out 0.5s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.instructions h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-align: center;
+}
+
+.instruction-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.instruction-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.instruction-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.instruction-item strong {
+    display: block;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.instruction-item p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    text-shadow: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .glowing-text {
+        font-size: 2.8rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%;
+        max-width: 250px;
+    }
+
+    .audio-toggle {
+        top: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .instruction-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .instructions {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .glowing-text {
+        font-size: 2.2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btn {
+        padding: 0.7rem 1.3rem;
+        font-size: 0.85rem;
+    }
+
+    .instructions h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #f093fb 100%);
+}
